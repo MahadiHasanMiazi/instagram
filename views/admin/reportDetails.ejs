@@ -1,0 +1,80 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/reportDetails.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+
+    <script src="/js/jquery-3.2.1.js"></script>
+</head>
+<body>
+   <div class="columns is-centered">
+       <div class="column reportDetails is-8-desktop">
+
+           <h1 class="reportDet">Report on <%=reportDetails[0].postedUserName%>'s Posts</h1>
+           <a href="/report" class="button is-info">BACK</a>
+           </br>
+           </br>
+
+    <table class="reportTable  table is-bordered is-striped is-narrow is-fullwidth">
+
+           <tr>
+                <th>Post ID</th>
+                <th>Reported By</th>
+                <th>Details</th>
+           </tr>
+
+
+        <%for(var i=0; i<reportDetails.length;i++){%>
+
+           <tr>
+               <td><%=reportDetails[i].post_id%></td>
+               <td><%=reportDetails[i].postReportedUserName%></td>
+               <td><button class="button is-info"  onclick="showDetails('<%=i%>')">Details</button></td>
+           </tr>
+
+        <tr class="detailedTable" id="reportDetails<%=i%>" style="display: none">
+            <td colspan="4">
+                <table  class=" table is-bordered is-striped is-narrow is-fullwidth">
+                    <tr>
+                        <th>Reported By</th>
+                        <th><%=reportDetails[i].postReportedUserName%></th>
+                        <th>Reported Time</th>
+                        <th><%=reportDetails[i].time%></th>
+                    </tr>
+
+                    <tr>
+                        <td colspan="1">Post Caption</td>
+                        <td colspan="3"><%=reportDetails[i].postCaption%></td>
+                    </tr>
+                    <tr>
+                        <td colspan="1">Post Image</td>
+                        <td class="postImage" colspan="3"><img src="<%=reportDetails[i].postImage%>"></td>
+                    </tr>
+                    <tr class="messsage">
+                        <td colspan="1">Message</td>
+                        <td colspan="3" style="border: 1px solid red"><%=reportDetails[i].reportMessage%></td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+        <%}%>
+
+       </table>
+
+       </div>
+   </div>
+
+
+
+<script>
+
+    function showDetails(id) {
+        $("#reportDetails"+id).toggle(200);
+    }
+
+</script>
+</body>
+</html>

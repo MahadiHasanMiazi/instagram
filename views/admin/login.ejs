@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instagram | Login</title>
+
+    <link rel="shortcut icon" href="\assets\images\system\favicon.ico" />
+
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+
+<div class="columns mainArea is-centered">
+
+    <div class="column is-6-desktop is-6-mobile inputForm">
+
+        <h2>Instagram Admin Login</h2>
+        <form method="POST">
+            <table>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" style="width: 600px" name="email"></td>
+                </tr>
+
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" id="password" name="password"></td>
+                    <td id="capsLockIsOn" style="font-size: 20px; color: red"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Login"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="color: red">
+                        <%=message%>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+    </div>
+
+    <script src="js/phoneSlider.js"></script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+.menubar{
+  padding-top: 20px;
+  position: fixed;
+  top: 0%;
+  overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 110%;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e1ffff+0,e1ffff+7,e1ffff+12,fdffff+12,e6f8fd+30,c8eefb+54,bee4f8+75,b1d8f5+100;Blue+Pipe+%232 */
+  background: #e1ffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #e1ffff 0%, #e1ffff 7%, #e1ffff 12%, #fdffff 12%, #e6f8fd 30%, #c8eefb 54%, #bee4f8 75%, #b1d8f5 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #e1ffff 0%,#e1ffff 7%,#e1ffff 12%,#fdffff 12%,#e6f8fd 30%,#c8eefb 54%,#bee4f8 75%,#b1d8f5 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #e1ffff 0%,#e1ffff 7%,#e1ffff 12%,#fdffff 12%,#e6f8fd 30%,#c8eefb 54%,#bee4f8 75%,#b1d8f5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e1ffff', endColorstr='#b1d8f5',GradientType=0 ); /* IE6-9 */
+  z-index: 2000;
+}
+
+.menubar .fa{
+  font-size: 35px;
+  color: black;
+}
+
+.menubar .fa:hover{
+  color: red;
+  transition: all 0.3s;
+}
+
+.post1{
+  display: block;
+  font-size: larger;
+  margin-top: 80px;
+  background: rgba(193,191,234,1);
+  background: -moz-linear-gradient(left, rgba(193,191,234,1) 0%, rgba(235,233,249,1) 38%, rgba(230,227,247,1) 47%, rgba(206,199,236,1) 92%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(193,191,234,1)), color-stop(38%, rgba(235,233,249,1)), color-stop(47%, rgba(230,227,247,1)), color-stop(92%, rgba(206,199,236,1)));
+  background: -webkit-linear-gradient(left, rgba(193,191,234,1) 0%, rgba(235,233,249,1) 38%, rgba(230,227,247,1) 47%, rgba(206,199,236,1) 92%);
+  background: -o-linear-gradient(left, rgba(193,191,234,1) 0%, rgba(235,233,249,1) 38%, rgba(230,227,247,1) 47%, rgba(206,199,236,1) 92%);
+  background: -ms-linear-gradient(left, rgba(193,191,234,1) 0%, rgba(235,233,249,1) 38%, rgba(230,227,247,1) 47%, rgba(206,199,236,1) 92%);
+  background: linear-gradient(to right, rgba(193,191,234,1) 0%, rgba(235,233,249,1) 38%, rgba(230,227,247,1) 47%, rgba(206,199,236,1) 92%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1bfea', endColorstr='#cec7ec', GradientType=1 );
+}
+
+.post .proimage{
+  height:60px;
+  width:60px;
+  border-radius: 50%;
+}
+
+
+.post .mainimage{
+  width: 700px;
+}
+
+
+.singlePost{
+  border-radius: 20px;
+  background-size: cover;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAADCAYAAABfwxXFAAAAX0lEQVQYV2P0dgz+z/CLg0FSmI+BQ+ofg5CgKMPPMz8ZrH85MTBaG7n+52WWZDCUV2Q4++o8A/M3PgZfETeG2+/ugSS9/7OzCDIo8PMzKGsrM3y48JmBk02a4fCr8wwAS7EZrNfeRg0AAAAASUVORK5CYII=");
+}
+
+
+.userPostedName{
+   color: white;
+   font-size: 23px;
+ }
+
+.userPostedName:hover{
+  color: red;
+  transition: all 0.2s;
+}
+
+.socialShare:hover{
+  background-color: black;
+  transition: all 0.3s;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*modal*/
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+
+
+.closeCommentDelete,.closeDelete, .exit, .close,.closeReport {
+  color: white;
+  float: right;
+  font-size: 28px;
+  margin-top: -10px;
+  font-weight: bold;
+}
+
+.closeCommentDelete,.closeReport ,.closeDelete, .exit, .close:hover,
+.closeReport ,.closeDelete, .exit, .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: -1px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal .modal-content ul{
+  padding: 10px 20px;
+  font-size: 25px;
+}
+
+
+.modal .modal-content ul input[type=text]{
+  height: 70px;
+  width: 100%;
+  font-size: 20px;
+}
+
+
+
+.modal .modal-content ul  .postSubmit{
+  /*background-color: deepskyblue;*/
+  /*color: white;*/
+  float: left;
+  margin-left: 45%;
+  /*font-size: 25px;*/
+  /*padding: 5px 10px;*/
+}
+
+.commentDeleteHeader{
+  background-color: white;
+}
+/*postmodalend*/
+
+
+/*postedit*/
+
+/*postEditCSS*/
+
+#postEditCSS{
+  visibility: hidden;
+  float: right;
+  background-color:darkslateblue;
+  color: white;
+  width: 20%;
+  text-align: center;
+}
+
+#postEditCSS  li{
+  border-bottom: 2px solid black;
+  padding: 5px;
+}
+
+#postEditCSS  li:hover{
+  background-color: black;
+  color: white;
+  transition: all 0.4s;
+}
+
+
+
+/*deleteConfirmation*/
+
+.deleteConfirmation{
+  font-size: 22px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  padding-left: 50px;
+  margin-bottom: 70px;
+}
+
+
+/*postSubmit*/
+.confirmButton{
+    background-color: black;
+    list-style-type: none;
+    padding-left: 40%;
+}
+
+
+.postReportModal textarea{
+  font-size: 22px;
+}
+
+
+/*ajaxSuggestion*/
+
+.ajaxSuggestion{
+  background-color: transparent;
+  font-size: larger;
+  float: left;
+  position: fixed;
+  visibility: visible;
+  z-index: 2000;
+  top: 43px;
+  right: 456px;
+
+}
+
+.ajaxSuggestionTable{
+  margin-left: -26%; !important;
+  border: 1px solid black;
+}
+.ajaxSuggestionTable img{
+  height: 40px;
+  width: 40px;
+}
+
+
+/*totalLikes*/
+.totalLikes{
+  font-size: larger;
+  background-color: red;
+  border-radius: 10px;
+  color: white;
+  padding: 5px 12px;
+  margin-bottom: 5px;
+  float: left;
+}
+
+.totalLikes:hover {
+  background-color: black;
+  cursor: pointer;
+}
+
+/*likeDetails*/
+.likeDetails{
+  position: absolute;
+  margin: 0 auto;
+  float: left;
+  margin-left:7%;
+  /*padding: 5px 15px;*/
+  z-index: 1000;
+ }
+
+.likeDetails table{
+  background-color: cadetblue;
+  color: white;
+  border-radius: 4%;
+}
+
+.likeDetails table tr{
+  border-bottom: 2px solid black;
+}
+
+.likeDetails table tr td{
+  padding: 5px 15px;
+}
+
+.likeDetails table tr:hover{
+  background-color: black;
+  transition: all 0.3s;
+}
+
+.likeDetails table tr td a{
+  color: white;
+}
+
+.likeDetails img{
+  height: 40px;
+  width: 40px;
+}
+
+/*hearts*/
+
+.hearts .fa{
+  font-size: 40px;
+  color: red;
+}
+
+.postCaptions{
+  color: white;
+  font-size: 25px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+
+
+/*backtotop*/
+
+.btt{
+  color: white;
+  background-color: red;
+  font-size: 24px;
+  padding: 8px 16px;
+  border-radius: 50%;
+  position: fixed;
+  right: 0%;
+  bottom: 0;
+  cursor: pointer;
+  display: none;
+}
+
+.btt:hover{
+  background-color: black;
+  transition: .3s;
+}
+
+
+/*Back to Top ends here*/

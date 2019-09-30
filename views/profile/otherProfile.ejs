@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= user.name%></title>
+
+    <link rel="shortcut icon" href="\assets\images\system\favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
+     <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<div class="columns is-centered menubar">
+    <div class="column is-7-desktop">
+
+        <div class="columns">
+
+            <div class="column is-4-desktop left">
+                <a href="/home"><img style="width:150px " src="\assets\images\system\logo.png"></a>
+            </div>
+
+
+            <div class="column is-5-desktop">
+                <div class="field">
+                    <p class="control has-icons-left is-centered">
+                        <input class="input column" type="text" name="username" onkeyup = "searchUserByName(this.value)" placeholder="Search">
+                        <span class="icon is-small is-left">
+            <i class="fa fa-search"></i>
+            </span>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="column is-offset-2-desktop">
+                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            </div>
+
+            <!--<div class="column">-->
+            <!--<a href="profile"><i class="fa fa-user" aria-hidden="true"></i></a>-->
+            <!--</div>-->
+             <div class="column">
+                <a href="/profile/<%= loggedUser.id%>"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+            <div class="column">
+                <a href="http://localhost:8000/inbox"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="column">
+                <a href="http://localhost:8000/logout">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="columns is-centered profile">
+    <div class="column is-7-desktop is-12-mobile viewProfile">
+
+        <div class="columns profileInfo">
+            <div class="column column is-3-desktop is-offset-2-desktop is-offset-3-mobile">
+                <img src="<%= user.imagePath%>">
+            </div>
+            <div class="column is-12-mobile">
+                <table class="table" >
+                    <tr>
+<input type="hidden" name="otherName" value="<%= user.name%>"/>
+<input type="hidden" name="otherImage" value="<%= user.imagePath%>"/>
+                        <td><%= user.name%></td>
+                        <td><%= user.email%></td>
+                        <td><a class="button <%= user.class%>" href="http://localhost:8000/friends/<%= user.friendUrl%>"><%= user.followORfollowing%></a></td>
+                       
+                        <td><i style="background-color: red" aria-hidden="true" onclick="BlockModal(0)" class="myBtn button fa fa-ban ">Block user</i></td>
+                        
+                    </tr>
+
+                    <tr>
+                        <td><%=postCount[0].count %> posts</td>
+                        <td><a href="#" onclick="followerlistModal()"><%= followers[0].count %> followers</a></td>
+                        <td><a href="#" onclick="followinglistModal()"><%= following[0].count %> following</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><%= user.about%></td>
+                    </tr>
+                   
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!---Block confirm Modal-->
+<div id="BlockUserModal" class="modal" tabindex="-1" >
+
+    <!-- Modal content -->
+    <div class="modal-content" style="width:300px; margin: 0 auto">
+        <div class="modal-header">
+            <span class="close" id="close4" >&times;</span>
+            <h2 style="background-color: red; color: white; height: 40px; width: 100%">Block User</h2>
+        </div>
+        <table>
+        
+            <tr>
+                <td></td>
+            </tr>
+     
+         <tr><td>
+         <p class="deleteConfirmation" style="color: black">Are you sure, you want to block <%= user.name%> ?</p>
+         </td>
+         </tr>
+          <tr>
+           </table>
+           <center><a style="background-color: #c15924" class="button <%= user.class%>" href="http://localhost:8000/block/<%= user.id%>">Block</a></center>
+    </div>
+
+</div>
+
+
+
+<!---Block confirm Modal End-->
+
+
+<!--followerlist Modal-->
+<div id="followerlistModal" class="modal" tabindex="-1" >
+
+    <!-- Modal content -->
+    <div class="modal-content" style="width:300px; margin: 0 auto">
+        <div class="modal-header">
+            <span class="close" id="close2" >&times;</span>
+            <h2>People Following <%= user.name%> </h2>
+        </div>
+        <table>
+        <% for(var i=0;i<followersList.length;i++){ %>
+            <tr>
+                <td>
+                    <img  src="<%= followersList[i].userImage%>" style="max-width: 100px;">
+                </td>
+                <td>
+                    <a href="http://localhost:8000/profile/<%=followersList[i].user_id%>"><%= followersList[i].userName%></a>
+                </td>
+
+            </tr>
+             
+             <% } %>
+
+        
+
+        </table>
+
+
+
+        
+    </div>
+
+</div>
+
+
+<!--follower list End-->
+<!--Following List Modal-->
+
+<div id="followinglistModal" class="modal" tabindex="-1" >
+
+    <!-- Modal content -->
+    <div class="modal-content" style="width:300px; margin: 0 auto">
+        <div class="modal-header">
+            <span class="close" id="close3" >&times;</span>
+            <h2>People Following by <%= user.name%></h2>
+        </div>
+        <table>
+        <% for(var i=0;i<followingList.length;i++){ %>
+            <tr>
+                <td>
+                    <img src="<%= followingList[i].friendImage%>" style="max-width: 100px;">
+                </td>
+                <td>
+                    <a href="http://localhost:8000/profile/<%=followingList[i].friend_id%>"><%= followingList[i].friendName %></a>
+                </td>
+                
+            </tr>
+             
+             <% } %>
+
+        
+
+        </table>
+
+
+
+        
+    </div>
+
+</div>
+
+
+<!--Following List Modal End-->
+
+<div class="columns is-desktop is-centered sharedPhotos">
+    <div class="column is-7-desktop is-12-mobile">
+
+
+        <div class="columns postedPhotos is-multiline is-mobile">
+            <% for(var i = 0; i < userPhoto.length; i++) { %>
+            <div class="column is-4-desktop is-6-mobile">
+                <a href='/post/<%=userPhoto[i].post_id%>'>  <img style="height: 200px" src="<%= userPhoto[i].image%>"></a>
+            </div>
+            <% } %>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="columns is-centered loadMore">
+    <div class="column is-7-desktop is-offset-6-desktop is-12-mobile is-offset-4-mobile">
+        <a class="button is-info">Load More</a>
+    </div>
+</div>
+
+<script src="/js/follow.js"></script>
+<script src="/js/searchByName.js"></script>
+<script src="/js/block.js"></script>
+</body>
+</html>

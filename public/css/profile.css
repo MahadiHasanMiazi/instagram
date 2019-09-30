@@ -1,0 +1,73 @@
+.profileMenubar{
+    padding-top: 20px;
+    position: fixed;
+    top: 0%;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 110%;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e1ffff+0,e1ffff+7,e1ffff+12,fdffff+12,e6f8fd+30,c8eefb+54,bee4f8+75,b1d8f5+100;Blue+Pipe+%232 */
+    background: #e1ffff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #e1ffff 0%, #e1ffff 7%, #e1ffff 12%, #fdffff 12%, #e6f8fd 30%, #c8eefb 54%, #bee4f8 75%, #b1d8f5 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #e1ffff 0%,#e1ffff 7%,#e1ffff 12%,#fdffff 12%,#e6f8fd 30%,#c8eefb 54%,#bee4f8 75%,#b1d8f5 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #e1ffff 0%,#e1ffff 7%,#e1ffff 12%,#fdffff 12%,#e6f8fd 30%,#c8eefb 54%,#bee4f8 75%,#b1d8f5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e1ffff', endColorstr='#b1d8f5',GradientType=0 ); /* IE6-9 */
+    z-index: 1000;
+}
+
+.profileMenubar .fa{
+    font-size: 35px;
+    color: black;
+}
+
+.profileMenubar .fa:hover{
+    color: red;
+    transition: all 0.3s;
+}
+
+.profile{
+    background-color: #fafafa;
+}
+
+.profileInfo img{
+    height: 150px;
+    border-radius: 50%;
+}
+
+.sharedPhotos{
+    background-color: #fafafa;
+}
+
+/*.ajaxSuggestion*/
+
+.ajaxSuggestion{
+    background-color: transparent;
+    font-size: larger;
+    float: left;
+    margin-top: -2%;
+    position: absolute;
+    visibility: visible;
+}
+
+.ajaxSuggestionTable{
+    margin-left: -26%; !important;
+    border: 1px solid black;
+}
+.ajaxSuggestionTable img{
+    height: 40px;
+    width: 40px;
+}
+
+.viewProfile{
+    margin-top: 100px;
+}
+.profile{
+    z-index: -1000;
+}
+
+/*postedPhotos*/
+.postedPhotos img:hover{
+    -webkit-box-shadow: -8px 10px 74px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: -8px 10px 74px -6px rgba(0,0,0,0.75);
+    box-shadow: -8px 10px 74px -6px rgba(0,0,0,0.75);
+    transition: all 0.3s;
+}

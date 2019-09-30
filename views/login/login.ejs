@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instagram | Login</title>
+
+    <link rel="shortcut icon" href="\assets\images\system\favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/phoneSlider.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<div class="columns mainArea">
+    <div class="column is-6-desktop is-6-mobile">
+
+        <div id="slider">
+            <div class="screen">
+                <ul>
+                    <li><img src="\assets\images\system\slider1.jpg"></li>
+                    <li><img src="\assets\images\system\slider2.jpg"></li>
+                    <li><img src="\assets\images\system\slider2.jpg"></li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="column is-6-desktop is-6-mobile inputForm">
+
+        <h2>Instagram Login</h2>
+<form method="POST">
+        <table>
+            <tr>
+                <td>Email</td>
+                <td><input class="input is-success"  autocomplete="false" type="text" id="email" name="email"></td>
+            </tr>
+
+            <tr>
+                <td>Password</td>
+                <td><input class="input is-success" autocomplete="false" type="password" id="password" name="password"></td>
+                <td id="capsLockIsOn" style="font-size: 20px; color: red"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input  type="submit" value="Login"></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="color: red">
+                    <%=message%>
+                </td>
+            </tr>
+
+            <tr>
+            <td>Not Registered?</td>
+             <td><a href="/registration">Register</a> now</td>
+            </tr>
+
+        </table>
+</form>
+
+
+        <h1 id="recentLoginText" style="color: white; font-size: 28px;"></h1>
+        <div class="recentLogins" style="width: 152px">
+
+            <span href="#myModal" role="button" class="btn" data-toggle="modal">  <img id="recentLoggedPhoto" style="height: 150px; width: 170px" src=""></span>
+            <p id="recentLoggedName" style="font-size: 25px; color: white; text-align: center; padding-top: 10px"></p>
+        </div>
+
+
+    </div>
+
+    <!-- Button to trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog" >
+
+            <!-- Modal content-->
+            <div class="modal-content" style="width: 300px; margin-top: 200px; padding: 20px 20px; border: 3px solid blue">
+                <form method="POST">
+                    <table class="table">
+                        <tr>
+                            <td><input type="hidden" id="emailModal" name="email"></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2"> <img  id="modalImage" style="height: 150px; width: 160px; margin-left: 50px" src=""></td>
+                        </tr>
+
+                        <tr style="margin-top: 20px">
+                            <td align="left">Password</td>
+                            <td><input class="input is-success" type="password" id="passwordModal" name="password"></td>
+                        </tr>
+                        <tr>
+                        <td colspan="2"><input class="button is-info is-medium"   style="margin-left: 90px" type="submit" value="Login"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+        <script src="js/phoneSlider.js"></script>
+        <script src="js/js-cookie.js"></script>
+
+
+    <script>
+
+        $(document).ready(function() {
+
+                  var mail = $.cookie("mail");
+
+                  $.cookie('mail', mail, { expires: 7 });
+
+
+
+            $.ajax({
+                url: '/ajax/getUserByMail/'+mail
+            }).done(function (data) {
+
+                $('#recentLoggedName').html(data.name);
+
+                $('#my_image').attr('src','second.jpg');
+                $('#recentLoggedPhoto').attr('src',data.imagePath);
+                $('#modalImage').attr('src',data.imagePath);
+                $('#emailModal').val(data.email);
+                $('#passwordModal').val('');
+                $('#recentLoginText').html('Recent login');
+
+            });
+
+        });
+
+
+    </script>
+
+</body>
+</html>

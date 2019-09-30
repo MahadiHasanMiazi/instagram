@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= user.name%></title>
+
+    <link rel="shortcut icon" href="\assets\images\system\favicon.ico" />
+
+
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <link rel="stylesheet" type="text/css" href="/css/notification.css">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+
+    <script src="/js/jquery-3.2.1.js"></script>
+
+</head>
+<body>
+
+
+
+
+<div class="columns is-centered profileMenubar">
+    <div class="column is-7-desktop">
+
+        <div class="columns">
+
+            <div class="column is-4-desktop left">
+                <a href="/home"><img style="width:150px " src="\assets\images\system\logo.png"></a>
+            </div>
+
+
+            <!--searchbyname-->
+
+            <div class="column is-5-desktop">
+                <div class="field">
+                    <p class="control has-icons-left is-centered">
+                        <input class="input column" type="text" name="username" onkeyup="searchUserByName(this.value)" placeholder="Search">
+                        <span class="icon is-small is-left">
+            <i class="fa fa-search"></i>
+            </span>
+                    </p>
+                </div>
+            </div>
+            <!--searchbyname-->
+
+
+            <div class="column  is-offset-2-desktop">
+                <div id="notification-header">
+                    <div style="position:relative">
+                        <button id="notification-icon" name="button" onclick="showNotificaions('<%= user.id%>')" class="dropbtn"><span id="notification-count"></span><i style="margin-top: -15px" class="fa fa-bell"></i></button>
+                        <div  id="notification-latest" style="display:none; max-height: 500px; max-width: 500px; overflow-y: scroll; z-index: 2000">
+                            <table  class="table" id="notification-latest-updated">
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <a href="/profile/<%= user.id%>"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="column">
+                <a href="http://localhost:8000/inbox"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="column">
+                <a href="http://localhost:8000/logout">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--search results-->
+<div class="columns is-centered">
+    <div class="column is-3-desktop is-offset-1-desktop ajaxSuggestion">
+
+        <table class="table is-fullwidth ajaxSuggestionTable">
+
+        </table>
+
+    </div>
+</div>
+
+<!--search results-->
+
+<div class="columns is-centered profile">
+    <div class="column is-7-desktop is-12-mobile viewProfile">
+
+        <div class="columns profileInfo">
+            <div class="column column is-3-desktop is-offset-2-desktop is-offset-3-mobile">
+               <img alt="Change profile Picture" src="<%= user.imagePath%>" onclick="pictureChangeModal()">
+            </div>
+            <div class="column is-12-mobile">
+                <table class="table">
+                <tr>
+                <td><%= user.name%></td>
+                    <td><%= user.email%></td>
+                <td><a href="http://localhost:8000/accounts/edit">EditProfile</a></td>
+                <td><a href="http://localhost:8000/accounts/passChange"><i style="font-size: 32px;" class="fa fa-wrench" aria-hidden="true"></i></a></td>
+
+                </tr>
+
+                <tr>
+                <td><%=postCount[0].count %> posts</td>
+                <td><a href="#" onclick="followerlistModal()"><%= followers[0].count %> followers</a></td>
+                <td><a href="#" onclick="followinglistModal()"><%=  following[0].count %> following</a></td>
+                </tr>
+                <tr>
+                <td colspan="3"><%= user.about%></td>
+                <td style=" z-index: -10"><button class="fa fa-list-alt button " aria-hidden="true" onclick="BlockListModal()">Block list</button></td>
+                </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--Picture Change Modal-->
+<div id="pictureChangeModal" class="modal" tabindex="-3" >
+
+    <!-- Modal content -->
+    <div class="modal-content"  style="max-width: 400px">
+        <div class="modal-header">
+            <span class="close" id="close" >&times;</span>
+            <h2>Change Picture</h2>
+        </div>
+        <form method="POST" encType="multipart/form-data">
+
+           <img  style="max-height: 200px;" src="<%= user.imagePath%>">
+
+
+
+            <ul>Upload New Image</ul>
+
+            <ul><input type="file" name="postImage"></ul>
+
+            <li class="confirmButton"><input  class="postSubmit button is-info" type="submit" value="Change Picture"></li>
+
+
+        </form>
+    </div>
+
+</div>
+<!--Picture Change Modal End-->
+
+
+
+
+<!--followerlist Modal-->
+<div id="followerlistModal" class="modal" tabindex="-3">
+
+    <!-- Modal content -->
+    <div class="modal-content" style="width:300px; margin: 0 auto">
+        <div class="modal-header">
+            <span class="close" id="close2" >&times;</span>
+            <h2>People Following You </h2>
+        </div>
+        <table>
+        <% for(var i=0;i<followersList.length;i++){ %>
+            <tr>
+                <td>
+                    <img  src="<%= followersList[i].userImage%>" style="max-width: 100px;">
+                </td>
+                <td>
+                    <a href="http://localhost:8000/profile/<%=followersList[i].user_id%>"><%= followersList[i].userName%></a>
+                </td>
+
+            </tr>
+
+             <% } %>
+
+
+
+        </table>
+
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<!--follower list End-->
+<!--Following List Modal-->
+<table align="center">
+<tr align="center">
+<td align="center">
+<div id="followinglistModal" class="modal" tabindex="-1" >
+
+    <!-- Modal content -->
+    <div class="modal-content" style="width:300px; margin: 0 auto" >
+        <div class="modal-header">
+            <span class="close" id="close3" >&times;</span>
+            <h2>People You are Following</h2>
+        </div>
+        <table>
+        <% for(var i=0;i<followingList.length;i++){ %>
+            <tr>
+                <td>
+                    <img src="<%= followingList[i].friendImage%>" style="max-width: 100px;">
+                </td>
+                <td>
+                    <a href="http://localhost:8000/profile/<%=followingList[i].friend_id%>"><%= followingList[i].friendName %></a>
+                </td>
+
+            </tr>
+
+             <% } %>
+
+
+
+        </table>
+
+
+
+
+    </div>
+
+</div>
+</td>
+</tr>
+</table>
+
+
+
+
+
+
+
+<!--Following List Modal End-->
+<!--Block list Modal-->
+<div id="BlockListModal" class="modal" tabindex="-3">
+
+    <!-- Modal content -->
+    <div class="modal-content" style="width:400px; margin: 0 auto">
+        <div class="modal-header">
+            <span class="close" id="close4" >&times;</span>
+            <h2>Blocked List</h2>
+        </div>
+        <table>
+        <% for(var i=0;i<blockList.length;i++){ %>
+            <tr>
+                <td>
+                    <img  src="<%= blockList[i].block_image%>" style="max-width: 100px;">
+                </td>
+                <td>
+                    <a href="http://localhost:8000/profile/<%=blockList[i].block_id%>"><%= blockList[i].block_name%></a>
+                </td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                 <td><a href="http://localhost:8000/block/unblock/<%= blockList[i].block_id%>" style="background-color: #4a80d6" aria-hidden="true" class="myBtn button">Unblock user</a></td>
+            </tr>
+
+             <% } %>
+
+
+
+        </table>
+
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<!--Block list Modal End-->
+
+
+
+
+
+<div class="columns is-desktop is-centered sharedPhotos">
+    <div class="column is-7-desktop is-12-mobile">
+
+
+        <div class="columns is-multiline is-mobile">
+        <% for(var i = 0; i < userPhoto.length; i++) { %>
+            <div class="column postedPhotos is-4-desktop is-6-mobile">
+             <a href='/post/<%=userPhoto[i].post_id%>'>  <img style="height: 200px" src="<%= userPhoto[i].image%>"></a>
+            </div>
+            <% } %>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+<!--<div class="columns is-centered loadMore">-->
+    <!--<div class="column is-7-desktop is-offset-6-desktop is-12-mobile is-offset-4-mobile">-->
+        <!--<a class="button is-info" >Load More</a>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+
+<input type="hidden" id="loggedUserId" value="<%= user.id%>">
+
+
+<script src="/js/pictureChange.js"></script>
+<script src="/js/follow.js"></script>
+<script src="/js/notifications.js"></script>
+<script src="/js/searchByName.js"></script>
+<script src="/js/block.js"></script>
+</body>
+</html>

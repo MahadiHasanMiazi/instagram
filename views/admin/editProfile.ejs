@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
+    <style>
+        body{
+            font-size: 24px;
+        }
+        th{
+            font-weight: 800;
+        }
+
+        td input[type="text"],td input[type="email"]{
+            font-size: 25px;
+        }
+    </style>
+
+</head>
+<body>
+<div>
+
+    <form method="POST">
+        <div class="columns is-centered">
+        <div class="column is-4-desktop">
+
+            <h1 style="font-size: 35px; text-align: center; margin-top: 60px">Update Profile</h1>
+
+
+            <table class="table is-striped is-narrow">
+        <tr>
+            <th>Name</th>
+            <td><input type="text" value="<%=admin.name%>" name="name" required></td>
+        </tr>
+
+        <tr>
+            <th>Email</th>
+            <td><input type="email" value="<%=admin.email%>" name="email" required></td>
+        </tr>
+
+
+        <tr>
+            <th>About</th>
+            <td><input type="text" value="<%=admin.about%>" name="about" required></td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2"><input style="margin-left: 100px" class="button is-info" type="submit" value="UPDATE"></td>
+        </tr>
+
+    </table>
+            <a class="button is-info" href="/admin/home">Back</a>
+        </div>
+        </div>
+
+    </form>
+</div>
+
+
+</body>
+</html>

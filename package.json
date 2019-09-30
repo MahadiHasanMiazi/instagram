@@ -1,0 +1,23 @@
+{
+  "name": "instagram",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "express-fileupload": "^0.1.4",
+    "express-session": "^1.15.5",
+    "google-translate": "^2.0.5",
+    "google-translate-api": "^2.3.0",
+    "mysql": "^2.14.1",
+    "socket.io": "^2.0.3",
+    "translate-api": "^0.3.12"
+  }
+}

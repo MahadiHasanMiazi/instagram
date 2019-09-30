@@ -1,0 +1,55 @@
+.screen ul li img{
+    height: 92%;
+    width: 96%;
+}
+.mainArea{
+    background-image: url('/assets/images/system/back.jpg');
+    background-size: cover;
+    font-family: Tahoma, Geneva, sans-serif;
+    height: 100%;
+}
+
+.inputForm h2{
+    font-size: 50px;
+    position: inherit;
+    text-align: center;
+    padding-top: 18%;
+    padding-bottom: 12%;
+    color: white;
+}
+
+.inputForm table tr td{
+    font-size: 30px;
+    padding: 5px 5px;
+    color: white;
+}
+
+.inputForm table tr td input[type="text"],input[type="password"]{
+    width: 100%;
+    height: 30px;
+    font-size: 25px;
+    color: black;
+}
+.inputForm table tr td input[type="submit"]{
+    font-size: 23px;
+    float: right;
+    width: 100px;
+    border: 1px solid white;
+    border-radius: 5%;
+    background-color: white;
+    color: black;
+}
+.inputForm table tr td input[type="submit"]:hover{
+    background-color: black;
+    color: white;
+    transition: 0.4s all;
+}
+body{
+    height: 100vh;
+}
+
+.recentLogins img:hover{
+    -webkit-box-shadow: -4px -3px 63px 0px rgba(255,255,255,1);
+    -moz-box-shadow: -4px -3px 63px 0px rgba(255,255,255,1);
+    box-shadow: -2px -3px 55px 0px rgba(255,255,255,1);
+}

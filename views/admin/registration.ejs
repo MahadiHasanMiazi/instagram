@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instagram | Registration</title>
+
+    <link rel="shortcut icon" href="\assets\images\system\favicon.ico" />
+
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
+
+    <style>
+        body{
+            font-size: 24px;
+        }
+        th{
+            font-weight: 800;
+        }
+
+        td input[type="text"],td input[type="email"],td input[type="password"]{
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<br/><br/>
+<form method="POST" encType="multipart/form-data">
+    <div class="columns is-centered">
+        <div class="column is-4-desktop">
+    <table>
+        <tr>
+            <td>NAME</td>
+            <td><input type="text" name="name" required /></td>
+        </tr>
+        <tr>
+            <td>PASSWORD</td>
+            <td><input type="password" name="password" required minlength="6"/></td>
+        </tr>
+        <tr>
+            <td>EMAIL</td>
+            <td><input type="email" name="email" required/></td>
+        </tr>
+        <tr>
+            <td>Photo</td>
+            <td><input type="file" name="adminPhoto" required/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input class="button is-info" style="margin-top: 20px" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+            <a class="button is-info" href="/admin/home">Back</a>
+
+        </div>
+        </div>
+</form>
+</body>
+</html>

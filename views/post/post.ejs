@@ -1,0 +1,417 @@
+<html>
+<head>
+    <title>Instagram | Post</title>
+
+    <link rel="shortcut icon" href="\assets\images\system\favicon.ico" />
+
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
+    <script src="/js/jquery-3.2.1.js"></script>
+
+
+</head>
+<body>
+
+<!--menubar-->
+<div class="columns is-centered menubar">
+    <div class="column is-7-desktop">
+
+        <div class="columns">
+
+            <div class="column is-4-desktop left">
+                <a id="myBtn"><i class="fa fa-instagram"></i></a>
+                <a href="/home"><img style="width:150px " src="\assets\images\system\logo.png"></a>
+            </div>
+
+
+            <!--searchbyname-->
+
+            <div class="column is-5-desktop">
+                <div class="field">
+                    <p class="control has-icons-left is-centered">
+                        <input class="input column" type="text" name="username" onkeyup="searchUserByName(this.value)" placeholder="Search">
+                        <span class="icon is-small is-left">
+            <i class="fa fa-search"></i>
+            </span>
+                    </p>
+                </div>
+            </div>
+            <!--searchbyname-->
+
+
+            <div class="column is-offset-2-desktop">
+                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="column">
+                <a href="/profile/<%= user.id%>"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="column">
+                <a href="inbox"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></i></a>
+            </div>
+            <div class="column">
+                <a href="/logout">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--search results-->
+<div class="columns is-centered">
+    <div class="column is-3-desktop is-offset-1-desktop ajaxSuggestion">
+
+        <table class="table is-fullwidth ajaxSuggestionTable">
+
+        </table>
+
+    </div>
+</div>
+
+<!--search results-->
+
+
+<!--postmodal for POSTING in instagram-->
+
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Upload Post</h2>
+        </div>
+        <form method="POST" encType="multipart/form-data">
+
+            <ul>Caption</ul>
+
+            <!--<ul><input type="text" placeholder="Type here....." name="caption"></ul>-->
+            <ul><textarea class="textarea is-primary"  placeholder="Type here....." name="caption"></textarea></ul>
+
+            <ul>Upload Image</ul>
+
+            <ul><input type="file" name="postImage"></ul>
+
+            <li class="confirmButton"><input  class="postSubmit button is-info" type="submit" value="Post"></li>
+
+
+        </form>
+    </div>
+
+</div>
+
+<!--posts-->
+
+<div class="columns is-centered post" >
+    <div class="column is-12-desktop post1">
+        <div class="column is-6-desktop is-offset-3-desktop">
+            <% for(var i = 0; i < post.length; i++) { %>
+
+            <% if(post[i].post_id==post_id) { var f=0;%>
+
+            <div class="columns">
+                <div class="column is-12-desktop">
+
+                    <% for(var q = 0; q < allUsers.length; q++) { %>
+
+                    <% if(post[i].user_id==allUsers[q].id) { %>
+
+                    <img class="proimage" src="<%= allUsers[q].imagePath%>">
+                    <a href="profile/<%= allUsers[q].id%>"><%= allUsers[q].name%></a>
+                    <% } %>
+                    <% } %>
+
+                    <button style="float: right"  onclick="postEdit('<%= f%>')"  ><span class="fa fa-cog"></span></button>
+
+
+                    <!--postedit-->
+
+                    <% if(post[i].user_id==user.id) { %>
+
+                    <ul id="postEditCSS" class="postEditMenu">
+
+                        <li onclick="editPostModal('<%= f%>')" class="postEditButton">Edit</li>
+
+                        <li onclick="deletePost('<%= f%>')" class="postDeleteButton">Delete</li>
+
+                        <li onclick="reportPost('<%= f%>')" class="postReportButton">Report</li>
+
+                    </ul>
+                    <% }else{%>
+
+                    <ul id="postEditCSS" class="postEditMenu">
+
+                        <li onclick="reportPost('<%= f%>')" class="postReportButton">Report</li>
+
+                    </ul>
+
+                    <% }%>
+
+                    <!--posteditmodal-->
+
+                    <div class="postEditModal modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="exit">&times;</span>
+                                <h2>Edit Post</h2>
+                            </div>
+                            <form method="POST" action="/home/postEdit">
+
+                                <ul><input type="hidden" name="post_id" value="<%= post[i].post_id%>"></ul>
+
+                                <ul>Caption</ul>
+
+                                <!--<ul><input type="text" name="editedCaption" value="<%= post[i].caption%>"></ul>-->
+                                <ul><textarea class="textarea is-primary" name="editedCaption" cols="95" rows="4"><%= post[i].caption%></textarea></ul>
+                                <ul><img  style="max-height: 300px;" src="<%= post[i].image%>"></ul>
+
+                                <li class="confirmButton"><input  class="postSubmit  button is-info" type="submit" value="Update"></li>
+
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <!--posteditmodal-->
+
+
+                    <!--postDeletemodal-->
+
+                    <div class="postDeleteModal modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <span class="closeDelete">&times;</span>
+
+                                <h2>Delete Post</h2>
+                            </div>
+                            <form method="POST" action="/home/deletePost" class="deletePost">
+
+                                <span></span>
+                                <ul><input type="hidden" name="post_id" value="<%= post[i].post_id%>"></ul>
+                                <ul><input type="hidden" name="image_id" value="<%= post[i].image%>"></ul>
+
+                                <h4 class="deleteConfirmation">Do u want to delete?</h4>
+
+
+                                <li class="confirmButton"><input  class="postSubmit button is-danger" type="submit" value="Confirm"></li>
+
+                            </form>
+                        </div>
+
+                    </div>
+
+
+                    <!--postDeletemodal-->
+
+
+
+
+                    <!--postreportmodal-->
+
+                    <div class="postReportModal modal" id="modal<%= post[i].post_id%>">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <span class="closeReport">&times;</span>
+
+                                <h2>Report Post</h2>
+                            </div>
+                            <form id="reportPost<%= post[i].post_id%>" onsubmit="reportSubmit('<%= post[i].post_id%>')"  action="/ajax/reportSubmit" class="reportPost">
+
+                                <span></span>
+                                <ul><input type="hidden" name="post_id" value="<%= post[i].post_id%>"></ul>
+                                <ul><input type="hidden" name="posted_by" value="<%= post[i].user_id%>"></ul>
+                                <ul><input type="hidden" name="image_id" value="<%= post[i].image%>"></ul>
+
+                                <ul><textarea name="postReportDetails" cols="52" rows="7"></textarea></ul>
+
+                                <li class="confirmButton"><input type="submit"  class="postSubmit button is-danger" value="Submit"></li>
+
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <!--postreportmodal-->
+
+
+
+
+                    <!--postedit-->
+
+
+                    </br>
+                    Dhaka,Bangladesh
+                    <br>
+
+                    </br>
+                    <%= post[i].caption%>
+                    <br>
+
+                    <img class="mainimage" src="<%= post[i].image%>">
+
+                    </br>
+
+
+
+                    <!--post react-->
+
+                    <div id="postIdToReachFromNoti<%= post[i].post_id%>"></div>
+
+                    <div id="reaction<%= post[i].post_id%>" class="hearts">
+
+                        <% var reac= false; for(var m=0; m<react.length; m++){%>
+
+                        <% if(post[i].post_id==react[m].post_id) { %>
+
+                        <a id="postReactedId<%= post[i].post_id%>" onclick="react('<%= post[i].post_id%>'),hideShow('postReactedId<%= post[i].post_id%>')" ><i class="fa fa-heart" aria-hidden="true"></i></a>
+
+                        <% reac= true; } %>
+
+                        <% } if (reac==false) { %>
+                        <a id="postUnreactedId<%= post[i].post_id%>" onclick="react('<%= post[i].post_id%>'),hideShow('postUnreactedId<%= post[i].post_id%>')" ><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                        <% }%>
+
+                    </div>
+                    <!--post react-->
+
+
+
+                    </br>
+
+                    <!--total react-->
+
+                    <% var tLikes=0; for (var x=0;x<allReact.length;x++){%>
+                    <% if (post[i].post_id==allReact[x].post_id){%>
+
+                    <%  tLikes++%>
+
+                    <%  }%>
+                    <%  }%>
+
+                    <span  class="totalLikes" on  onclick="getLikeDetails('<%= post[i].post_id%>')" ><span id="totalLikes<%=post[i].post_id%>"><%=tLikes%></span>  Likes</span>
+
+
+
+                    <div class="likeDetails">
+                        <table class="table" style="display: none"   id="totalLikeDetails<%= post[i].post_id%>">
+
+                        </table>
+                    </div>
+
+                    <!--total react-->
+
+                    </br>
+                    </br>
+                    <%= post[i].upload_time%>
+                    </br>
+                    </br>
+
+                    <div class="comments">
+                        <table class="table is-striped is-narrow is-fullwidth" id="ajaxNewCommentInsert<%=f%>">
+                            <% for(var j = 0; j < comment.length; j++) { %>
+
+                            <%   if(post[i].post_id==comment[j].post_id){ %>
+
+                            <%   if(user.id==comment[j].user_id){ %>
+
+                            <tr id="singleComment<%=comment[j].id%>">
+
+                                <td style="width: 40px"><a href="profile/<%= comment[j].user_id%>"><img  style="height: 40px;width: 40px; border-radius: 50%; margin-left: 10px;" src="<%= comment[j].imagePath%>"><p style="text-align: center"><%= comment[j].name%></p> </a> </td>
+                                <td><%=  comment[j].comment%> </td>
+                                <td style="width:  60px;font-size: smaller"><%= comment[j].time%></td>
+                                <td style="width: 25px"><button onclick="commentEdit('<%= comment[j].id%>')" id="commentEdit<%= comment[j].id%>" style="width: 74px" class="button is-info">Edit</button>
+                                    <button id="deleteComment<%= comment[j].id%>" onclick="deleteCommentModal('<%=  comment[j].comment%>','<%= comment[j].id%>')" class="button is-danger">Delete</button></td>
+                            </tr>
+
+
+                            <tr id="commentEditBox<%= comment[j].id%>" style="display: none">
+
+                                <form id="commentEditForm<%= comment[j].id%>" action="/ajax/submitEditedComment" onsubmit="submitEditedComment('<%= comment[j].id%>')">
+                                    <td colspan="4"><input id="commentInputBox<%= comment[j].id%>" style="width: 100%; height: 40px; font-size: large; background-color: lightcoral" name="editedComment" type="text"></td>
+                                </form>
+
+                            </tr>
+
+
+
+                            <!--deletecommentmodal-->
+                            <div class="modal commentDeleteModal" id="commentDeleteModal<%= comment[j].id%>">
+                                <div class="modal-content">
+                                    <div class="modal-header commentDeleteHeader">
+
+                                        <span class="closeCommentDelete" id="closeCommentDelete<%= comment[j].id%>">&times;</span>
+
+                                        <h2 style="background-color: red; color: white; height: 40px; width: 100%">Delete Post</h2>
+
+                                        <p class="deleteConfirmation" style="color: black">Do u want to delete this comment?</p>
+
+                                        <h2 id="showCommentToDelete<%= comment[j].id%>" style="color: green; margin-top: -40px; padding-bottom: 20px; text-align: center"></h2>
+
+                                        <li class="confirmButton"><input  class="postSubmit button is-danger" onclick="submitDeleteComment('<%= comment[j].id%>')" type="submit" value="Confirm"></li>
+
+                                    </div>
+                                </div>
+
+                                    <!--deletecommentmodal-->
+
+
+
+
+
+                                    <% }else{%>
+
+                                    <tr>
+
+                                        <td style="width: 40px"><a href="profile/<%= comment[j].user_id%>"><img  style="height: 40px;width: 40px; border-radius: 50%; margin-left: 10px;" src="<%= comment[j].imagePath%>"><p style="text-align: center"><%= comment[j].name%></p> </a> </td>
+                                        <td><%=  comment[j].comment%> </td>
+                                        <td colspan="3" style="font-size: smaller; float: right"><%= comment[j].time%></td>
+
+                                    </tr>
+
+                                    <% }%>
+                                    <% }%>
+                                    <% }%>
+
+                        </table>
+                    </div>
+
+
+                    <form  class="commentSubmit" action="/ajax/commentSubmit"  onsubmit="submitComment('<%=f%>','<%= user.id%>','<%= user.name%>','<%= user.imagePath%>')">
+                        <input type="hidden" name="post_id" value="<%= post[i].post_id%>">
+                        <input class="input is-primary" name="comment" type="text" placeholder="Leave a comment">
+                    </form>
+
+                </div>
+            </div>
+
+
+            <%  } %>
+            <%  } %>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="/js/postModal.js"></script>
+<script src="/js/postEdit.js"></script>
+<script src="/js/ajax.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="/css/admin/home.css">
+</head>
+<body>
+
+
+<!--<a href="/report">Reported Posts</a>-->
+<!--<a href='/admin/registration'>AdminList</a>-->
+<!--<a href="#">Add Admin</a>-->
+<!--<a href="#">Report</a>-->
+<div class="sideBar">
+
+
+    <div class="adminInfo">
+      <p style="text-align: center"><img  style="height: 130px; width: 130px; border-radius: 50%" src='<%=admin.imagePath%>'></p>
+        <h4 style="text-align: center; font-size: 40px; color: white"><%=admin.name%></h4>
+    </div>
+
+<div class="menuBar">
+    <ul>
+        <li><input type="button" value="Home" onclick="window.location.reload()" ></li>
+        <li><input type="button" value="Profile">
+            <ul>
+
+                <li><input type="button" value="View" onclick="window.location.href = '/admin/viewProfile'"></li>
+                <li><input type="button" value="Edit" onclick="window.location.href = '/admin/editProfile'"></li>
+                <li> <input type="button" value="Password Change"  onclick="window.location.href='/admin/ChangePassword'"></li>
+                <li><input type="button" value="Profile Picture Change" id="profilePictureChange.php" onclick="request(this.id)"></li>
+            </ul>
+
+        </li>
+
+        <li><input type="button" value="Post Reports" id="report.php" onclick="window.location.href = '/report'"></li>
+
+        </li>
+
+
+        <li><input type="button" value="Users" id="viewUser.php" onclick="window.location.href='/admin/allUser'"></li>
+        <li><input type="button" value="Admin" id="" onclick="">
+            <ul>
+                <li><input type="button" value="View" id="" onclick="window.location.href='/admin/allAdmin'">
+                <li><input type="button" value="Add Admin" id="addAdmin.php" onclick="window.location.href = '/admin/registration'">
+            </ul>
+
+        <li><input type="button" value="Logout"  onclick="window.location.href = '/admin/Logout'">
+
+    </ul>
+</div>
+</div>
+
+<div id="display">
+    <h1 style="font-size: 50px; padding-top: 180px; text-align: center">Welcome <%=admin.name%></h1>
+</div>
+
+</body>
+
+
+</html>

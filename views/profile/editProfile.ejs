@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instagram | Edit Profile</title>
+
+    <link rel="shortcut icon" href="\assets\images\system\favicon.ico" />
+
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
+
+</head>
+<body>
+
+<div class="container">
+    <div class=" is-desktop is-vcentered">
+<strong>Update Profile</strong><br>
+<a class="button is-info is-medium" href="http://localhost:8000/profile/<%= user.id%>">Back</a>
+<br/><br/>
+<form method="post">
+    <table class="table">
+        <tr>
+            <td>NAME</td>
+            <td><input required class="input" type="text" name="name" value="<%= user.name%>"/></td>
+        </tr>
+
+        <tr>
+            <td>EMAIL</td>
+            <td><input required class="input" type="email" name="email" value="<%= user.email%>"/></td>
+        </tr>
+        
+     <!--new tr-->
+        <tr>
+            <td>About(max length 40)</td>
+            <td><span><textarea required class="input" name="about" rows="4" maxlength="40"><%= user.about%>
+            </textarea></span></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input class="button is-primary" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+</form>
+</div>
+</div>
+</body>
+</html>

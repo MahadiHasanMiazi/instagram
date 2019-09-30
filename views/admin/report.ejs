@@ -1,0 +1,80 @@
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="/css/report.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <script src="/js/jquery-3.2.1.js"></script>
+
+</head>
+<body>
+<div class="columns is-centered">
+    <div class="column report is-8-desktop">
+    <h1 class="title">Post Report</h1>
+
+        <a class="button is-info" href="/admin/home">Back</a>
+
+        <table class="table is-bordered is-striped is-narrow is-fullwidth">
+            <tr >
+                <th>Serial</th>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Total Report</th>
+                <th>Details</th>
+                <th>Status</th>
+            </tr>
+
+
+            <% for( var i=0; i<report.length; i++){ %>
+
+            <tr>
+                <td><%=i+1%></td>
+                <td><%=report[i].post_by %></td>
+                <td><a href="/profile/<%=report[i].post_by %>"><%=report[i].name%></a></td>
+                <td> <img style="height: 50px; width: 50px;" src="<%=report[i].image%>"> </td>
+                <td><%=report[i].totalReport%></td>
+                <td><a href="/report/<%=report[i].post_by %>">Details</a></td>
+
+                <%if (report[i].status==1){%>
+                <td>
+                    <label class="switch">
+                        <input onclick="disableEnableUser('<%=report[i].post_by %>')" type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+                <%}else{%>
+
+                <td>
+                    <label class="switch">
+                        <input onclick="disableEnableUser('<%=report[i].post_by %>')" type="checkbox" >
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+
+                <%}%>
+
+            </tr>
+
+            <% } %>
+
+        </table>
+    </div>
+</div>
+
+</body>
+
+
+<script>
+    function disableEnableUser(user_id) {
+        $.ajax({
+            url: '/admin/enableDisableUser/'+user_id
+        }).done(function (data) {
+            // alert(data);
+        });
+
+    }
+</script>
+
+</html>

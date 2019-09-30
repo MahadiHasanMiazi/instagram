@@ -1,0 +1,40 @@
+.reportDetails table tr td{
+    text-align: center;
+}
+.reportDetails table tr th{
+    text-align: center;
+    font-size: 25px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+.reportDetails tabl tr:nth-child(even){
+    background-color: #f2f2f2
+}
+
+.postImage img{
+    height: 300px;
+}
+
+.reportTable tr td{
+    font-size: 20px;
+}
+
+.reportDet{
+    text-align: center;
+    font-size: 40px;
+}
+
+.detailedTable table{
+    border: 2px solid red;
+}
+
+.detailedTable table tr th{
+    background-color: red;
+}
+
+.detailedTable table .messsage{
+    color: red;
+    border: 1px solid red;
+}
